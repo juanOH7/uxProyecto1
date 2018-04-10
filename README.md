@@ -1,14 +1,8 @@
-# Simple uniforms example app
-
-This repository shows basic usage of [uniforms](https://github.com/vazco/uniforms/).
-
-For more info visit [official docs](https://github.com/vazco/uniforms/blob/master/INTRODUCTION.md).
-
 ## Starting the app
 
-1) You must have Meteor installed, otherwise run:
+1) Meteor instalado:
     - `curl https://install.meteor.com/ | sh`
-1) Install all dependencies:
+1) Instalar dependencias:
     - `meteor npm install`
-1) Run app with:
+1) correr app:
     - `meteor npm start`
