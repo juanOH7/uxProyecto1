@@ -4,18 +4,27 @@ import {Grid, Segment, Menu, Modal, Header} from 'semantic-ui-react';
 import {BusTicketSchema} from '/imports/api/schemaTicket';
 
 import TicketForm from './ticketForm.js';
-//import CustomForm from './CustomForm';
+
 
 export default class App extends React.Component {
     state = {
         selectedTab: 'ticketForm',
         modalData: null,
+        subscription:{
+            tickets: Meteor.subscribe("tickets")
+        }
     };
     openTab = selectedTab => this.setState({selectedTab});
 
     onSubmit = data => {
-        // You can do anything with this data,
-        // send it to the server using Meteor.call, invoke GraphQL mutation or just display in a modal :)
+        Meteor.call('addTicket', 
+        data.fechaSal,data.fechaReg,data.destino,data.origen,data.clase,data.cantPasajeros, (error, data)=>{//calls method from server, () is a function
+            if(error){
+                Bert.alert('Please login before submitting', 'danger', 'fixed-top', 'fa-frown-o');
+            }else{
+                console.log("good");
+            }
+        });
         this.setState({modalData: data})
     };
 
@@ -40,7 +49,6 @@ export default class App extends React.Component {
                             )}
                         </Menu>
 
-                        {/* Not very elegant but simple and working tabs system */}
                         {selectedTab === 'ticketForm' && (
                             <TicketForm
                                 schema={BusTicketSchema}
@@ -52,7 +60,7 @@ export default class App extends React.Component {
                     <Modal
                         open={!!modalData}
                         onClose={this.closeModal}
-                        header="Data submitted!"
+                        header="Recibo"
                         content={(
                             <Modal.Content>
                                 <pre>{JSON.stringify(modalData, null, 4)}</pre>

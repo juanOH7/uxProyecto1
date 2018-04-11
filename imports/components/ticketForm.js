@@ -14,10 +14,10 @@ const TicketForm = ({schema, onSubmit, model = {}}) => (
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column width={6} >
+                <Grid.Column width={7} max={new Date(2100, 1, 1)} >
                     <DateField name="fechaSal" />
                 </Grid.Column>
-                <Grid.Column width={6}>
+                <Grid.Column width={7}>
                     <DateField name="fechaReg" />
                 </Grid.Column>
             </Grid.Row>
@@ -27,7 +27,7 @@ const TicketForm = ({schema, onSubmit, model = {}}) => (
                 </Grid.Column>
             </Grid.Row>
             <Grid.Row>
-                <Grid.Column width={2}>
+                <Grid.Column width={4}>
                     <NumField name="cantPasajeros" />
                 </Grid.Column>
             </Grid.Row>

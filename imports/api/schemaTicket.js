@@ -1,4 +1,7 @@
-import {SimpleSchema} from 'meteor/aldeed:simple-schema';
+const ticketMongo = new Mongo.Collection("tickets");
+
+import SimpleSchema from 'simpl-schema';
+
 
 export const BusTicketSchema = new SimpleSchema({
     origen:{
@@ -10,13 +13,14 @@ export const BusTicketSchema = new SimpleSchema({
         defaultValue: 'Tegucigalpa',
         min:5
     },
-    propietario:{
+    /*propietario:{
         type:String,
         label:"ID Usuario",
         autoValue: function() {
             return this.userID
-        }
-    },
+        },
+        optional:true
+    },*/
     destino:{
         type:String,
         label:"Destino",
@@ -28,12 +32,13 @@ export const BusTicketSchema = new SimpleSchema({
     },
     fechaSal:{
         type:Date,
+        defaultValue:new Date,
         label:"Fecha Salida",
     },
     fechaReg:{
         type:Date,
+        defaultValue:new Date,
         label:"Fecha Regreso",
-        optional: true
     },
     clase:{
         type:String,
@@ -42,7 +47,7 @@ export const BusTicketSchema = new SimpleSchema({
         defaultValue: 'Turista'
     },
     cantPasajeros:{
-        type: Number,
+        type: SimpleSchema.Integer,
         label:"Cantidad de personas",
         defaultValue:1,
         min:1,
@@ -50,3 +55,5 @@ export const BusTicketSchema = new SimpleSchema({
     },
 
 });
+
+ticketMongo.attachSchema(BusTicketSchema);
